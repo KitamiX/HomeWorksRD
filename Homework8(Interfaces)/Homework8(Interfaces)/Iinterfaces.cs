@@ -16,6 +16,6 @@ namespace Homework8_Interfaces_
     {
         void TurnOn(bool status);
         void TurnOff(bool status);
-        void ChangeStation(int stationFreq);
+        void ChangeStation(double stationFreq);
     }
 }
