@@ -14,6 +14,7 @@ namespace Homework8_Interfaces_
                 Console.WriteLine("Heater is already ON");
             else
                 Console.WriteLine("Seat Heater is now ON!!!");
+            Console.ReadLine();
         }
         public void HeatOff(bool status)
         {
@@ -21,6 +22,7 @@ namespace Homework8_Interfaces_
                 Console.WriteLine("Heater is already OFF");
             else
                 Console.WriteLine("Seat Heater is now OFF!!!");
+            Console.ReadLine();
         }
         public void AdjustPosition(int positionDegree) 
         {
@@ -36,6 +38,7 @@ namespace Homework8_Interfaces_
                 Console.WriteLine("Radio is already ON");
             else
                 Console.WriteLine("Radio is now ON!!!");
+            Console.ReadLine();
         }
         public void TurnOff(bool status)
         {
@@ -43,8 +46,9 @@ namespace Homework8_Interfaces_
                 Console.WriteLine("Radio is already OFF");
             else
                 Console.WriteLine("Radio is now OFF!!!");
+            Console.ReadLine();
         }
-        public void ChangeStation (int stationFreq) 
+        public void ChangeStation (double stationFreq) 
         {
             Console.WriteLine($"Now playing {stationFreq} Mhz Radio Station");
         }

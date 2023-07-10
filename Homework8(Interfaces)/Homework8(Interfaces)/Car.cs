@@ -13,6 +13,7 @@ namespace Homework8_Interfaces_
         protected int MaxSpeed { get; set; }
         protected bool seatHeaterStatus = false;
         protected bool radioStatus = false;
+        protected double stationFreq {  get; set; }
         protected ISeats _seats = new Seats();
         protected IRadio _radio = new Radio();
 
@@ -27,6 +28,9 @@ namespace Homework8_Interfaces_
         public abstract int SpeedUp();
         public abstract int SlowDown();
         public abstract void GetCarProp();
+        public abstract double GetStationFreq();
+        public abstract void ChangeStation();
+        public abstract void AdjustPosition();
         public bool HeaterOn()
         {
             _seats.HeatOn(seatHeaterStatus);
@@ -47,6 +51,9 @@ namespace Homework8_Interfaces_
             _radio.TurnOff(radioStatus);
             return radioStatus = false;
         }
+        public string RadioStatus() => radioStatus ? "ON" : "OFF";
+        public string SeatHeaterStatus() => seatHeaterStatus ? "ON" : "OFF";
+
     }
 
     public class Audi : Car
@@ -69,7 +76,10 @@ namespace Homework8_Interfaces_
             if (_CurrentSpeed >= _MaxSpeed)
             {
                 Console.WriteLine("Car can't move faster!!!");
+                Console.ReadLine();
             }
+            else if (_CurrentSpeed + _SpeedUp >= _MaxSpeed)
+                _CurrentSpeed = _MaxSpeed;
             else _CurrentSpeed += _SpeedUp;
             return _CurrentSpeed;
         }
@@ -83,6 +93,8 @@ namespace Homework8_Interfaces_
             {
                 Console.WriteLine("Car doesnt' move!!!");
             }
+            else if (_CurrentSpeed + _SlowDown <= 0)
+                _CurrentSpeed = 0;
             else _CurrentSpeed -= _SlowDown;
             return _CurrentSpeed;
         }
@@ -91,6 +103,32 @@ namespace Homework8_Interfaces_
             Console.WriteLine($"Model: {_Model}");
             Console.WriteLine($"MaxSpeed: {_MaxSpeed}");
             Console.WriteLine($"SpeedUP/SlowDown Speed: {_SpeedUp}/{_SlowDown}");
+        }
+        public override double GetStationFreq()
+        {
+            return stationFreq;
+        }
+        public override void ChangeStation()
+        {
+            Console.WriteLine(_Model + " frequency diapason: 101,1 - 150,8");
+            Console.Write("Enter new station frequency: ");
+            stationFreq = double.Parse(Console.ReadLine());
+            if (stationFreq >= 101.1 && stationFreq <= 150.8)
+                _radio.ChangeStation(stationFreq);
+            else
+                Console.WriteLine($"{_Model} doesnt support this station frequency: {stationFreq}");
+                Console.ReadLine();
+        }
+        public override void AdjustPosition()
+        {
+            Console.WriteLine(_Model + " Supports seat adjustment from 15 to 75 degrees");
+            Console.Write("Enter new seat position ");
+            var seatPos = int.Parse(Console.ReadLine());
+            if(seatPos >= 15 && seatPos <= 75)
+                _seats.AdjustPosition(seatPos);
+            else
+                Console.WriteLine(_Model + " doesnt support this seat position: " + seatPos + "degrees");
+            Console.ReadLine();
         }
     }
     public class BMW : Car
@@ -113,7 +151,10 @@ namespace Homework8_Interfaces_
             if (_CurrentSpeed >= _MaxSpeed)
             {
                 Console.WriteLine("Car can't move faster!!!");
+                Console.ReadLine();
             }
+            else if (_CurrentSpeed + _SpeedUp >= _MaxSpeed)
+                _CurrentSpeed = _MaxSpeed;
             else _CurrentSpeed += _SpeedUp;
             return _CurrentSpeed;
         }
@@ -128,6 +169,8 @@ namespace Homework8_Interfaces_
             {
                 Console.WriteLine("Car doesnt' move!!!");
             }
+            else if (_CurrentSpeed + _SlowDown <= 0)
+                _CurrentSpeed = 0;
             else _CurrentSpeed -= _SlowDown;
             return _CurrentSpeed;
         }
@@ -137,6 +180,32 @@ namespace Homework8_Interfaces_
             Console.WriteLine($"Model: {_Model}");
             Console.WriteLine($"MaxSpeed: {_MaxSpeed}");
             Console.WriteLine($"SpeedUP/SlowDown Speed: {_SpeedUp}/{_SlowDown}");
+        }
+        public override double GetStationFreq()
+        {
+            return stationFreq;
+        }
+        public override void ChangeStation()
+        {
+            Console.WriteLine(_Model + " frequency diapason: 101,1 - 150,8");
+            Console.Write("Enter new station frequency: ");
+            _radio.ChangeStation(double.Parse(Console.ReadLine()));
+            if (stationFreq >= 80.0 && stationFreq <= 120.5)
+                _radio.ChangeStation(stationFreq);
+            else
+                Console.WriteLine($"{_Model} doesnt support this station frequency: {stationFreq}");
+                Console.ReadLine();
+        }
+        public override void AdjustPosition()
+        {
+            Console.WriteLine(_Model + " Supports seat adjustment from 30 to 45 degrees");
+            Console.Write("Enter new seat position ");
+            var seatPos = int.Parse(Console.ReadLine());
+            if (seatPos >= 30 && seatPos <= 45)
+                _seats.AdjustPosition(seatPos);
+            else
+                Console.WriteLine(_Model + " doesnt support this seat position: " + seatPos + "degrees");
+            Console.ReadLine();
         }
     }
 }
