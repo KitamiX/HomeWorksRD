@@ -153,7 +153,7 @@ namespace Homework8_Interfaces_
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("---###Radio_Control###---");
+                Console.WriteLine("---###Seat_Control###---");
                 Console.WriteLine("Heater Status: " + car.SeatHeaterStatus());
                 Console.WriteLine();
                 Console.WriteLine("1. Turn ON Heater");
