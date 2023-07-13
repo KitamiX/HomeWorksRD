@@ -4,7 +4,6 @@ namespace Homework9_GenericType_
 {
     internal class Program
     {
-        //public static int[]? NumArray { get; set; }
         public static int[] GenerateRandomNumber(int size)
         {
             var array = new int[size];
@@ -98,9 +97,8 @@ namespace Homework9_GenericType_
             st2.Stop();
             PrintList(sortedNumbersGeneric);
             Console.WriteLine() ;
-            Console.WriteLine("\n Not Generic Time: " + st1.Elapsed.TotalNanoseconds + " ns"); // 90615200 ns
-            Console.WriteLine("\n Generic Type Time: "  + st2.Elapsed.TotalNanoseconds + " ns"); // 1224200 ns
-            //Not generic type algorithm (90x times)> generic type algorithm 
+            Console.WriteLine("\n Not Generic Time: " + st1.Elapsed.TotalNanoseconds + " ns"); // 90615200 ns (5k elements)  ; 370631400 ns (10k elements) 
+            Console.WriteLine("\n Generic Type Time: "  + st2.Elapsed.TotalNanoseconds + " ns"); // 1224200 ns (5k elements) ; 1198600 ns (10k elements)
         }
     }
 }
