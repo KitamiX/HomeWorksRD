@@ -1,12 +1,9 @@
-﻿using System.Security.Cryptography.X509Certificates;
+﻿namespace Homework8_Interfaces_;
 
-namespace Homework8_Interfaces_
+internal class Program
 {
-    internal class Program
+    static void Main()
     {
-        static void Main(string[] args)
-        {
-            Menu.Start();
-        }
+        Menu.Start();
     }
 }
